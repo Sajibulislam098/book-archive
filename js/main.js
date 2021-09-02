@@ -1,11 +1,13 @@
+// nedded id added
+
 const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
 const searchResult = document.getElementById("book-container");
-
 const errorDiv = document.getElementById("error");
 const resultNumber = document.getElementById("resultNumber");
 const spinner = document.getElementById("spinner");
 
+// search button
 searchBtn.addEventListener("click", function () {
     console.log(spinner);
     const search = searchInput.value;
@@ -21,7 +23,7 @@ searchBtn.addEventListener("click", function () {
     fetch(url)
         .then((res) => res.json())
         .then((data) => {
-            // Setting a timer of 1.5s, before removing the spinnner, and showing data
+            // Setting a timer of 1.5s
             setTimeout(() => {
                 spinner.classList.add("d-none");
                 showData(data.docs);
@@ -32,6 +34,7 @@ searchBtn.addEventListener("click", function () {
         });
 });
 
+// show details on book-container
 function showData(data) {
     // Error Handing
 
@@ -40,6 +43,7 @@ function showData(data) {
     } else {
         errorDiv.innerText = "";
     }
+
 
     data.forEach((book) => {
         resultNumber.innerText = `${data.length} Result Found`;
