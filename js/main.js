@@ -17,6 +17,7 @@ searchBtn.addEventListener("click", function () {
     }
     //   Clear
     searchResult.innerHTML = "";
+    resultNumber.innerText = '';
 
     const url = `https://openlibrary.org/search.json?q=${search}`;
     spinner.classList.remove("d-none");
