@@ -1,5 +1,4 @@
 // nedded id added
-
 const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
 const searchResult = document.getElementById("book-container");
@@ -9,8 +8,9 @@ const spinner = document.getElementById("spinner");
 
 // search button
 searchBtn.addEventListener("click", function () {
-    console.log(spinner);
+
     const search = searchInput.value;
+    searchInput.value = '';
     if (search === "") {
         errorDiv.innerText = "Search field cannot be empty.";
         return;
@@ -18,7 +18,7 @@ searchBtn.addEventListener("click", function () {
     //   Clear
     searchResult.innerHTML = "";
 
-    const url = `http://openlibrary.org/search.json?q=${search}`;
+    const url = `https://openlibrary.org/search.json?q=${search}`;
     spinner.classList.remove("d-none");
     fetch(url)
         .then((res) => res.json())
@@ -36,7 +36,8 @@ searchBtn.addEventListener("click", function () {
 
 // show details on book-container
 function showData(data) {
-    // Error Handing
+
+    // Error Handling
 
     if (data.length === 0) {
         errorDiv.innerText = "NO Result Found";
@@ -56,10 +57,11 @@ function showData(data) {
             <img src = "${imgURL}"/>
             <div class="card-body">
         
-                <h5 class="card-title">${book.title} </h5>
+                <h5 class="card-title"><b>${book.title}</b> </h5>
                 <p class="card-text">Author Name: ${book.author_name} </p>
+                <p class="card-text">Publisher: ${book.publisher} </p>
                 <p class="card-text">Publish Date: ${book.publish_date} </p>
-                <p class="card-text">Publish Year: ${book.publish_year}</p>    
+                <p class="card-text">Publish Year: ${book.publish_year}</p>
                 <p class="card-text">First Publish Year: ${book.first_publish_year} </p>
 
             </div>
